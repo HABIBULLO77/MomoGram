@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
+import {Link} from "react-router-dom"
 import { useForm } from "react-hook-form"
 import {
   Form,
@@ -14,10 +15,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation"
 import { z } from "zod"
+import Loader from "@/components/shared/Loader"
  
 
 const SignupForm = () => {
-  const isLoading = true;
+  const isLoading = false;
 
    // 1. Define your form.
    const form = useForm<z.infer<typeof SignupValidation>>({
@@ -97,7 +99,18 @@ const SignupForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="shad-button_primary">Submit</Button>
+        <Button type="submit" className="shad-button_primary">
+            {isLoading ? (
+              <div className="flex-center gap-2">
+                <Loader/>Loading...
+              </div>
+            ): "Sign up"}
+        </Button>
+
+        <p className="text-small-regular text-light-2 text-center mt-2">
+          Already have an account?
+          <Link to="/sign-in" className="text-primary-500 text-small-semibold ml-1">Log in</Link>
+        </p>
       </form>
       </div>
     </Form>
