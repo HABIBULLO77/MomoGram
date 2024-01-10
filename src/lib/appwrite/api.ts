@@ -6,15 +6,15 @@ export async function createUserAccount(user: INewUser){
     try {
         const newAccount = await account.create(
             ID.unique(),
-            user.name,
             user.email,
             user.password,
+            user.name,
         )
 
         return newAccount;
         
     } catch (error) {
-        console.log('Error creating user account', error);
+        console.log( error);
         return error; 
     }
 }
