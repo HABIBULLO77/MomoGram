@@ -21,7 +21,7 @@ import { useToast } from "@/components/ui/use-toast"
  
 
 const SignupForm = () => {
-  const { toast } = userToast()
+  const { toast } = useToast()
   const isLoading = false;
 
    // 1. Define your form.
