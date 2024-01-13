@@ -18,6 +18,8 @@ const INITIAL_STATE = {
     checkAuthUser: async () => false as boolean,
 }
 
+const AuthContext = createContext<IContextType>(INITIAL_STATE);
+
 const AuthContext = () => {
   return (
     <div>AuthContext</div>
