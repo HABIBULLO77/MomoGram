@@ -1,3 +1,4 @@
+import { getCurrentUser } from '@/lib/appwrite/api';
 import { IContextType } from '@/types';
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -28,10 +29,12 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   const checkAuthUser = async () => {
     try {
-      
+      const currentAccount = await getCurrentUser();
     } catch (error) {
       console.log(error);
       return false;
+    } finally {
+      setIsLoading(false);
     }
   };
 
