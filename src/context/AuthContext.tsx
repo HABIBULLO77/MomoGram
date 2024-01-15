@@ -72,7 +72,7 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
     isLoading,
     isAuthenticated,
     setIsAuthenticated,
-    checkAuthUser
+    checkAuthUser,
   }
   
   return (
