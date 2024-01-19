@@ -15,12 +15,12 @@ const LeftSidebar = () => {
     if (isSuccess) navigate(0)
   }, [isSuccess])
 
-const LeftSidebar = () => {
+
   return (
     <nav className='leftsidebar'>
       <div className='flex flex-col gap-11'>
         <Link to='/' className="flex gap-3 item-center">
-          <img src="/images/logo.svg" alt="logo" width={170} height={36} />
+          <img src="/assets/images/momo.svg" alt="logo" width={170} height={36} />
         </Link>
 
         <Link to={'/profile/${user.id}'} className='flex gap-3 items-center'>
@@ -38,7 +38,8 @@ const LeftSidebar = () => {
           {sidebarLinks.map((link: INavLink) =>{
             return(
               <li key={link.label} className='leftsidebar-link'>
-                <NavLink to={link.route}>
+                <NavLink to={link.route} className="flex gap-4 items-center p-4">
+                  <img src={link.imgURL} alt={link.label} className='group-hover:invert-white'/>
                   {link.label}
                 </NavLink>
               </li>
