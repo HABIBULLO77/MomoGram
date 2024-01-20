@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate,useLocation } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { useSignOutAccount } from '@/lib/react-query/queriesAndMutations'
 import { useEffect } from 'react';
@@ -7,6 +7,7 @@ import { sidebarLinks } from '@/constants';
 import { INavLink } from '@/types';
 
 const LeftSidebar = () => {
+  const { pathname } = useLocation();
   const {mutate: signOut, isSuccess} = useSignOutAccount();
   const navigate = useNavigate();
   const { user } = useUserContext();
@@ -36,10 +37,11 @@ const LeftSidebar = () => {
         </Link>
         <ul className='flex flex-col gap-6'>
           {sidebarLinks.map((link: INavLink) =>{
+            const isActive = pathname === link.route;
             return(
-              <li key={link.label} className='leftsidebar-link'>
+              <li key={link.label} className={`leftsidebar-link group ${ isActive && 'bg-primary-500'}`}>
                 <NavLink to={link.route} className="flex gap-4 items-center p-4">
-                  <img src={link.imgURL} alt={link.label} className='group-hover:invert-white'/>
+                  <img src={link.imgURL} alt={link.label} className={`group-hover:invert-white ${isActive && 'invert-white'}`}/>
                   {link.label}
                 </NavLink>
               </li>
