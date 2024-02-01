@@ -48,7 +48,7 @@ const PostForm = () => {
             <FormItem>
               <FormLabel className="shad-form_label">Caption</FormLabel>
               <FormControl>
-                <Textarea placeholder="shad-textarea custom-scrollbar" {...field} />
+                <Textarea className="shad-textarea custom-scrollbar" {...field} />
               </FormControl>
               <FormMessage className="shadcn-form_message" />
             </FormItem>
@@ -80,7 +80,23 @@ const PostForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="tags"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="shad-form_label">Add Tags (separated by comma " , ")</FormLabel>
+              <FormControl>
+                <Input type="text" className="shad-input" placeholder="Coding, Python, AI" />
+              </FormControl>
+              <FormMessage className="shadcn-form_message" />
+            </FormItem>
+          )}
+        />
+        <div className="flex gap-4 items-center justify-end">
+          <Button type="button" className="shad-button_dark_4">Cancel</Button>
+          <Button type="submit" className="shad-button_primary whitespace-nowrap">Submit</Button>
+        </div>
       </form>
     </Form>
   )
