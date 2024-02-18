@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "../ui/textarea"
 import FileUploader from "../shared/FileUploader"
+import { PostValidation } from "@/lib/validation"
  
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -24,15 +25,18 @@ const formSchema = z.object({
 
 const PostForm = ({post}) => {
    // 1. Define your form.
-   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+   const form = useForm<z.infer<typeof PostValidation>>({
+    resolver: zodResolver(PostValidation),
     defaultValues: {
-      username: "",
+      caption: post ? post?.caption : "",
+      file: [], 
+      location: post ? post?.location : "",
+      tags: post ? post?.tags.join(',') : "",
     },
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof PostValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
