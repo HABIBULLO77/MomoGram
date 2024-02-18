@@ -3,27 +3,19 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+import { Form, FormControl, FormItem, FormLabel, FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "../ui/textarea"
 import FileUploader from "../shared/FileUploader"
 import { PostValidation } from "@/lib/validation"
+import { Models } from "appwrite"
  
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
+type PostFormProps  = {
+  post?: Models.Document;
+}
 
-const PostForm = ({post}) => {
+const PostForm = ({ post }: PostFormProps) => {
    // 1. Define your form.
    const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
@@ -81,7 +73,7 @@ const PostForm = ({post}) => {
             <FormItem>
               <FormLabel className="shad-form_label">Add Location</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" />
+                <Input type="text" className="shad-input" {...field} />
               </FormControl>
               <FormMessage className="shadcn-form_message" />
             </FormItem>
@@ -94,7 +86,7 @@ const PostForm = ({post}) => {
             <FormItem>
               <FormLabel className="shad-form_label">Add Tags (separated by comma " , ")</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" placeholder="Coding, Python, AI" />
+                <Input type="text" className="shad-input" placeholder="Coding, Python, AI" {...field} />
               </FormControl>
               <FormMessage className="shadcn-form_message" />
             </FormItem>
