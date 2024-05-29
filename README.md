@@ -1,3 +1,6 @@
+#This is MomoGram. It is a social media app.
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
