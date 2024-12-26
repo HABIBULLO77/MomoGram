@@ -1,4 +1,4 @@
-#This is MomoGram. It is a social media app.
+# This is MomoGram. It is a social media app.
 ## Project is in progress!!!
 
 
